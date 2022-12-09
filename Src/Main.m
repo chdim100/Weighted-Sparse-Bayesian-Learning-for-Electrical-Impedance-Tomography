@@ -42,21 +42,17 @@ close all
 %%%%% n lines for the above form for n perturbations
 %%%%% B) perturbances=[n m] for experimental data from the University of
 %%%%% Eastern Finland. Source: V. K. A. Hauptmann and S. Siltanen,
-%%%%% ìOpen 2D Electrical Impedance Tomography data archive,î 2017,
+%%%%% ‚ÄúOpen 2D Electrical Impedance Tomography data archive,‚Äù 2017,
 %%%%% arXiv:1704.01178.
 %%%%% each pair n,m represents the corresponding fantom (see
 %%%%% Real_Data/targets.jpg)
 %%%%% C) if perturbances is scalar, then in-vivo data from EIDORS and
-%%%%% V. Guardo et al., ìA superheterodyne serial data acquisition system for-
-%%%%% Electrical impedance tomography,î in Proc. 15th Annu. Int. Conf. IEEE
-%%%%% Eng. Med. Biol. Soc., 1993, pp. 86ñ87.  is loaded, consisting a number
+%%%%% V. Guardo et al., ‚ÄúA superheterodyne serial data acquisition system for-
+%%%%% Electrical impedance tomography,‚Äù in Proc. 15th Annu. Int. Conf. IEEE
+%%%%% Eng. Med. Biol. Soc., 1993, pp. 86‚Äì87.  is loaded, consisting a number
 %%%%% of EIT thoracic imaging frames for a single breath cycle.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% examples for perturbances
-
- perturbances=[0.4 -0.2 0.3 6 -0.35;...
-     -0.4 -0.2 0.3 6 -0.35;...
-     0 0.4 0.3 6 -0.35];
 
 % perturbances=[0.4 0 0.2 1 -0.45;...
 %     -0.4 0 0.2 1 -0.45;...
@@ -68,11 +64,10 @@ close all
 %     0 -0.4 0.2 1 0.3;...
 %     0 0.4 0.2 1 0.3];
 
-%  perturbances=[0.4 0.4 0.2 1 -0.3;...
-%      0.4 -0.4 0.2 1 0.3;...
-%      -0.4 -0.4 0.2 1 -0.3;...
-%      -0.4 0.4 0.2 1 0.3];
-%  load('reference_2.mat')
+perturbances=[0.4 0.4 0.2 1 -0.3;...
+      0.4 -0.4 0.2 1 0.3;...
+      -0.4 -0.4 0.2 1 -0.3;...
+      -0.4 0.4 0.2 1 0.3];
 
 %perturbances=[3 4];
 
