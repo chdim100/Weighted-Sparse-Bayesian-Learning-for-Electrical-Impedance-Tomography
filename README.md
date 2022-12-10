@@ -8,5 +8,7 @@ Supports only 2D EIT imaging, with 3D imaging planned as a future capability.
 
 Run the Main.m file, with proper selection of the cases, perturbations and measurement patterns (see comments in file)
 
+A Python demo is also included for Weighted Sparse Bayesian Learning which will be regularly updated. 
+
 Please cite to:  
 Dimas, Christos, Vassilis Alimisis, and Paul P. Sotiriadis, "Electrical Impedance Tomography using a Weighted Bound-Optimization Block Sparse Bayesian Learning Approach" 2022 IEEE 22th International Conference on Bioinformatics and Bioengineering (BIBE). IEEE, 2022 (TO APPEAR)
