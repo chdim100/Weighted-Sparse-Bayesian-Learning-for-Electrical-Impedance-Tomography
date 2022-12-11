@@ -14,7 +14,7 @@
 %%%%%%%path to experimental data
 datapath='Real_Data';
 %%%%%%%path to EIDORS
-Eidorspath='C:\Users\Chris\Desktop\PHD_files\';
+Eidorspath='set_path';%%%%%%% set path to eidors!
 if ~exist('startuped')||startuped==0
     try 
         run ([Eidorspath,'eidors-v3.9-ng\eidors\startup.m'])
