@@ -11,4 +11,4 @@ Run the Main.m file, with proper selection of the cases, perturbations and measu
 A Python demo is also included for Weighted Sparse Bayesian Learning which will be regularly updated. 
 
 Please cite to:  
-Dimas, Christos, Vassilis Alimisis, and Paul P. Sotiriadis, "Electrical Impedance Tomography using a Weighted Bound-Optimization Block Sparse Bayesian Learning Approach" 2022 IEEE 22th International Conference on Bioinformatics and Bioengineering (BIBE). IEEE, 2022 (TO APPEAR)
+Dimas, Christos, Vassilis Alimisis, and Paul P. Sotiriadis, "Electrical Impedance Tomography using a Weighted Bound-Optimization Block Sparse Bayesian Learning Approach" 2022 IEEE 22th International Conference on Bioinformatics and Bioengineering (BIBE). IEEE, 2022 DOI: 10.1109/BIBE55377.2022.00058 
