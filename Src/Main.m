@@ -86,13 +86,14 @@ if size(perturbances,2)>2 %%%case simulated measurements
         N,I,SNR,sim_model_code,perturbances);
 elseif size(perturbances,2)==2 %%% case real measurements
     I=2e-03;
+    sim=0;
     [stim,els] = mk_stim_patterns(N,1,[0,skipcurr+1],[0,skipvolt+1],{},I);
     [vh,vi,y1]=reveal_real_measurements(N,'path',datapath,els,skipcurr,skipvolt,'xaxa',perturbances);
     dv=-(vi-vh.meas);
-    sim=0;
     clear sim_model sim_model2
 elseif size(perturbances,2)==1 %%%case thoracic measurements
     I=2e-03;
+    sim=0;
     [stim,els] = mk_stim_patterns(N,1,[0,skipcurr+1],[0,skipvolt+1],{},I);
     load montreal_data_1995
     dvt=double(zc_resp(els,15)-zc_resp(els,1));
@@ -131,11 +132,11 @@ uniform_elems=setdiff(1:LFEM,non_uniform_elems);
 L=size(Jpixel,2);
 
 %%%%% get the ground truth
-if ~exist('sim_model2') %%%case real
+if ~exist('sim_model2') && size(perturbances,2)~=1 %%%case real (experimental), not in-vivo
     [ImCond,xflatten,yflatten]=color_to_conductivity_decoder(perturbances,datapath);
     path='Quick_Data';
     reference=Map_image_to_pixel([xflatten yflatten],ImCond,xc,yc,path);
-else %%%case simulated measurements
+elseif size(perturbances,2)>2 %%%case simulated measurements
     reference=get_ground_truth(sim_model2,sim_model_code,xc,yc);
 end
 %%%%%
@@ -225,29 +226,31 @@ if SBL==1
     %  
     %%%%%%% metrics: CC Correlation Coefficient and RRE Relative
     %%%%%%% Reconstruction Error
-    rr1=corrcoef(sigmaSBLw,reference);
-    ccWBOBSBL=rr1(1,2);
-    norm_reference=(reference-1)/max(abs(reference-1));
-    norm_sigmaSBLw=sigmaSBLw/max(abs(sigmaSBLw));
-    RRE_WBOBSBL=norm(norm_sigmaSBLw-norm_reference)/norm(norm_reference);
+    if size(perturbances,2)~=1 %%%% metrics non-applicable for in-vivo cases
+        rr1=corrcoef(sigmaSBLw,reference);
+        ccWBOBSBL=rr1(1,2);
+        norm_reference=(reference-1)/max(abs(reference-1));
+        norm_sigmaSBLw=sigmaSBLw/max(abs(sigmaSBLw));
+        RRE_WBOBSBL=norm(norm_sigmaSBLw-norm_reference)/norm(norm_reference);
     
     %
-    rr2=corrcoef(sigmaSBL,reference);
-    ccBSBL=rr2(1,2);
-    norm_sigmaSBL=sigmaSBL/max(abs(sigmaSBL));
-    RRE_BSBL=norm(norm_sigmaSBL-norm_reference)/norm(norm_reference);
+        rr2=corrcoef(sigmaSBL,reference);
+        ccBSBL=rr2(1,2);
+        norm_sigmaSBL=sigmaSBL/max(abs(sigmaSBL));
+        RRE_BSBL=norm(norm_sigmaSBL-norm_reference)/norm(norm_reference);
     
     %
-    rr3=corrcoef(dsigmaITL,reference);
-    ccIGTR=rr3(1,2);
-    norm_dsigmaITL=dsigmaITL/max(abs(dsigmaITL));
-    RRE_IGTR=norm(dsigmaITL-norm_reference)/norm(norm_reference);
+        rr3=corrcoef(dsigmaITL,reference);
+        ccIGTR=rr3(1,2);
+        norm_dsigmaITL=dsigmaITL/max(abs(dsigmaITL));
+        RRE_IGTR=norm(dsigmaITL-norm_reference)/norm(norm_reference);
     
-    rr4=corrcoef(dsigmaTV,reference);
-    ccTV=rr4(1,2);
-    norm_dsigmaTV=dsigmaTV/max(abs(dsigmaTV));
+        rr4=corrcoef(dsigmaTV,reference);
+        ccTV=rr4(1,2);
+        norm_dsigmaTV=dsigmaTV/max(abs(dsigmaTV));
     
-    RRE_TV=norm(norm_dsigmaTV-norm_reference)/norm(norm_reference);
+        RRE_TV=norm(norm_dsigmaTV-norm_reference)/norm(norm_reference);
+    end
     
 end
 %
